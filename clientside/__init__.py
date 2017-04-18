@@ -15,9 +15,9 @@
 # You should have received a copy of the GNU General Public License
 # along with Gedit Clientside Plugin. If not, see <http://www.gnu.org/licenses/>.
 
-from StringIO import StringIO
-from jsmin import JavascriptMinify
-from cssmin import CSSMin
+from io import StringIO
+from .jsmin import JavascriptMinify
+from .cssmin import CSSMin
 
 from gi.repository import GObject, Gtk, Gdk, Gedit, PeasGtk
 import os
@@ -167,7 +167,7 @@ class ClientsideWindowHelper:
 				self._settings['indent_char'] = '\t'
 				
 		except err:
-			print "Unable in import settings to Clientside plugin"
+			print("Unable in import settings to Clientside plugin")
 		
 		return
 	
@@ -711,7 +711,7 @@ class ClientsideWindowHelper:
 		treeview.connect('drag-data-received', self.treeview_on_drag_data_received)
 	    
 	def treeview_on_drag_data_received(self, treeview, drag_context, x, y, selection_data, info, eventtime):
-		print "found dnd"
+		print("found dnd")
 		target_path, drop_position = treeview.get_dest_row_at_pos(x, y)
 		model, source = treeview.get_selection().get_selected()
 		target = model.get_iter(target_path)
